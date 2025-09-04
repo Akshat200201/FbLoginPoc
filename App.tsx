@@ -17,7 +17,6 @@ import {
 } from 'react-native-fbsdk-next';
 import { FB_APP_ID } from '@env';
 
-// const FB_APP_ID = '626145897237404';
 
 type GraphUser = {
   id?: string;
