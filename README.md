@@ -1,97 +1,141 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Facebook Login POC (React Native CLI)
 
-# Getting Started
+## 📌 Goal
+A tiny React Native app that implements **Facebook Login** using `react-native-fbsdk-next`.  
+The app performs native/browser login, retrieves an access token, and shows basic profile info.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+No backend, no fancy UI — just a **clean, correct auth flow** with proper callback configuration.
 
-## Step 1: Start Metro
+---
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 🚀 Features
+- **Continue with Facebook** button.
+- **Facebook native login** if the FB app is installed, else secure browser fallback.
+- Requests `public_profile` and `email` permissions.
+- On success:
+  - ✅ Shows access token (masked, last 8 chars only).
+  - ✅ Displays token expiry in human-readable format.
+  - ✅ Fetches and renders user info (`id`, `name`, `email`) via Graph API.
+- **Logout button** that clears token/session and returns to the login state.
+- Handles **cancelled login and errors gracefully**.
+- Proof the token works:
+  - In-app Graph API call → `https://graph.facebook.com/v20.0/me?fields=id,name,email`
+  - Can also debug in [Facebook Token Debugger](https://developers.facebook.com/tools/debug/accesstoken).
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
+## 🛠️ Tech Stack
+- **React Native CLI** (Bare workflow)
+- **Facebook Login SDK**: [`react-native-fbsdk-next`](https://github.com/thebergamo/react-native-fbsdk-next)
+
+---
+
+## 🔧 Setup Instructions
+
+### 1. Clone the repo
 ```sh
-# Using npm
-npm start
+git clone https://github.com/Akshat200201/FbLoginPoc.git
+cd FbLoginPoc
 
-# OR using Yarn
-yarn start
-```
 
-## Step 2: Build and run your app
+Install dependencies
+npm install
+# or
+yarn install
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+Configure environment variables
 
-### Android
+Create a .env file in the root:
 
-```sh
-# Using npm
-npm run android
+FB_APP_ID=your_facebook_app_id_here
 
-# OR using Yarn
-yarn android
-```
 
-### iOS
+👉 Never commit secrets!
+Instead, use .env.example for reference.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+.env.example
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+FB_APP_ID=YOUR_FB_APP_ID
 
-```sh
-bundle install
-```
+4. Android setup
 
-Then, and every time you update your native dependencies, run:
+Open android/ in Android Studio at least once to sync Gradle.
 
-```sh
-bundle exec pod install
-```
+Run clean if needed:
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+cd android
+./gradlew clean
+cd ..
 
-```sh
-# Using npm
-npm run ios
 
-# OR using Yarn
-yarn ios
-```
+Start Metro and build:
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+npx react-native start
+npx react-native run-android
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+ iOS setup (if testing on macOS)
+cd ios
+pod install
+cd ..
+npx react-native run-ios
 
-## Step 3: Modify your app
+⚙️ Meta Developer Setup
 
-Now that you have successfully run the app, let's make changes!
+Go to Meta for Developers
+ → Create an app.
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+Add Facebook Login product.
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+Keep Mode: Development (no review needed).
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Note down your App ID (add it to .env).
 
-## Congratulations! :tada:
+Configure redirect/callback URLs:
 
-You've successfully run and modified your React Native App. :partying_face:
+Android: Custom scheme via manifest (e.g., fb<APP_ID>://authorize).
 
-### Now what?
+iOS: Add the same scheme in Info.plist.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+Add the generated redirect URLs in Valid OAuth Redirect URIs under the Facebook Login settings.
 
-# Troubleshooting
+▶️ Demo Flow
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+Press Continue with Facebook.
 
-# Learn More
+If logged in:
 
-To learn more about React Native, take a look at the following resources:
+See masked access token.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+See expiry date/time.
+
+See user JSON (id, name, email).
+
+Logout returns to the initial screen.
+
+(Optional) Open Token Debugger to validate token.
+
+🧹 Security Notes
+
+.env holds sensitive values → not committed.
+
+.env.example provides placeholders for collaborators.
+
+Always keep node_modules and build files ignored via .gitignore.
+
+📹 Walkthrough
+
+Screen-record setup, showing:
+
+Facebook Developer App configuration (App ID, redirect URIs).
+
+Running the app.
+
+Login → token + Graph API response.
+
+Debugging token in Facebook Token Debugger.
+
+⏱️ Delivery
+
+Works on Android (tested).
+
+Browser fallback works if Facebook app is not installed.
