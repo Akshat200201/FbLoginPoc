@@ -32,60 +32,60 @@ No backend, no fancy UI — just a **clean, correct auth flow** with proper call
 
 
 
-
 ## 🔧 Setup Instructions
 
 ### 1. Clone the repo
-
+```sh
 git clone https://github.com/Akshat200201/FbLoginPoc.git
 cd FbLoginPoc
-
-
-Install dependencies
+```
+2. Install dependencies
+```sh
 npm install
 # or
 yarn install
-
-Configure environment variables
-
+```
+3. Configure environment variables
 Create a .env file in the root:
-
+```sh
+.env
+Copy code
 FB_APP_ID=your_facebook_app_id_here
-
-
+```
 👉 Never commit secrets!
 Instead, use .env.example for reference.
-
 .env.example
-
+```
+.env
+Copy code
 FB_APP_ID=YOUR_FB_APP_ID
-
+```
 4. Android setup
-
 Open android/ in Android Studio at least once to sync Gradle.
 
 Run clean if needed:
 
+```sh
 cd android
 ./gradlew clean
 cd ..
-
-
 Start Metro and build:
-
+```
+```
 npx react-native start
 npx react-native run-android
+```
+5. iOS setup (if testing on macOS)
 
- iOS setup (if testing on macOS)
+```
 cd ios
 pod install
 cd ..
 npx react-native run-ios
+```
 
 ⚙️ Meta Developer Setup
-
-Go to Meta for Developers
- → Create an app.
+Go to Meta for Developers → Create an app.
 
 Add Facebook Login product.
 
@@ -102,23 +102,21 @@ iOS: Add the same scheme in Info.plist.
 Add the generated redirect URLs in Valid OAuth Redirect URIs under the Facebook Login settings.
 
 ▶️ Demo Flow
-
 Press Continue with Facebook.
 
 If logged in:
 
-See masked access token.
+✅ See masked access token.
 
-See expiry date/time.
+✅ See expiry date/time.
 
-See user JSON (id, name, email).
+✅ See user JSON (id, name, email).
 
 Logout returns to the initial screen.
 
 (Optional) Open Token Debugger to validate token.
 
 🧹 Security Notes
-
 .env holds sensitive values → not committed.
 
 .env.example provides placeholders for collaborators.
@@ -126,7 +124,6 @@ Logout returns to the initial screen.
 Always keep node_modules and build files ignored via .gitignore.
 
 📹 Walkthrough
-
 Screen-record setup, showing:
 
 Facebook Developer App configuration (App ID, redirect URIs).
@@ -137,8 +134,8 @@ Login → token + Graph API response.
 
 Debugging token in Facebook Token Debugger.
 
-⏱️ Delivery
+```pgsql
 
-Works on Android (tested).
 
-Browser fallback works if Facebook app is not installed.
+Do you also want me to add a **Usage Example code snippet** (like how `FBLoginButton` is used in your `
+```
