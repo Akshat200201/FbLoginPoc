@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FbLoginPoc</string>
+    <string name="facebook_app_id">626145897237404</string>
+    <string name="fb_login_protocol_scheme">fb626145897237404</string>
+    <string name="facebook_client_token">482c3ef4d467e284e7187b5015dc2bb1</string>
+
+
 </resources>
