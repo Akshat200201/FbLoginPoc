@@ -7,9 +7,12 @@ The app performs native/browser login, retrieves an access token, and shows basi
 No backend, no fancy UI — just a **clean, correct auth flow** with proper callback configuration.
 
 ---
-![1](https://github.com/user-attachments/assets/a9070d6a-4b82-464c-8bd6-b3b7ce36291c)
-![2](https://github.com/user-attachments/assets/068befb7-33c5-411e-9149-ce71d63de3af)
-![3](https://github.com/user-attachments/assets/80355730-cb03-499b-b533-8423d66fd93f)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a9070d6a-4b82-464c-8bd6-b3b7ce36291c" alt="1" width="250"/>
+  <img src="https://github.com/user-attachments/assets/068befb7-33c5-411e-9149-ce71d63de3af" alt="2" width="250"/>
+  <img src="https://github.com/user-attachments/assets/17111773-26c2-4955-ac16-96ea8e59a099" alt="3" width="250"/>
+</p>
+
 
 
 
