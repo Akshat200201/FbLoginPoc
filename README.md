@@ -14,10 +14,6 @@ No backend, no fancy UI — just a **clean, correct auth flow** with proper call
 </p>
 
 
-
-
-
-
 ## 🚀 Features
 - **Continue with Facebook** button.
 - **Facebook native login** if the FB app is installed, else secure browser fallback.
@@ -57,17 +53,14 @@ yarn install
 ```
 3. Configure environment variables
 Create a .env file in the root:
-```sh
 .env
-Copy code
+```sh
 FB_APP_ID=your_facebook_app_id_here
 ```
 👉 Never commit secrets!
 Instead, use .env.example for reference.
 .env.example
 ```
-.env
-Copy code
 FB_APP_ID=YOUR_FB_APP_ID
 ```
 4. Android setup
@@ -143,9 +136,3 @@ Running the app.
 Login → token + Graph API response.
 
 Debugging token in Facebook Token Debugger.
-
-```pgsql
-
-
-Do you also want me to add a **Usage Example code snippet** (like how `FBLoginButton` is used in your `
-```
